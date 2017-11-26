@@ -7,7 +7,7 @@
     "test": "npm run test:html && npm run test:js",
     "test:html": "glob-run nu-html-checker *.html",
     "test:js": "glob-run jshint js/*.js",
-    "build:clean": "rimraf css/*.css",
+    "build:clean": "glob-run rimraf css/*.css",
     "build": "npm run build:clean && npm run build-css && npm run build:autoprefixer && npm run test",
     "build-css": "node-sass --include-path scss scss/style.scss   css/style.css",
     "watch": "parallelshell \"npm run watch-css\" \"npm run watch:autoprefixer\" \"npm  run watch:browser \"",
