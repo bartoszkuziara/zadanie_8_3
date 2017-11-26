@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:html",
+    "test": "npm run test:html && npm run test:js",
     "test:html": "glob-run nu-html-checker *.html",
-    "build:clean" : "rimraf css\/*.css",
+    "test:js": "glob-run jshint js/*.js",
+    "build:clean": "rimraf css/*.css",
     "build": "npm run build:clean && npm run build-css && npm run build:autoprefixer && npm run test",
     "build-css": "node-sass --include-path scss scss/style.scss   css/style.css",
-
     "watch": "parallelshell \"npm run watch-css\" \"npm run watch:autoprefixer\" \"npm  run watch:browser \"",
     "build:autoprefixer": "autoprefixer-cli css/style.css",
-    "watch:browser" : "browser-sync start",
+    "watch:browser": "browser-sync start",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "watch:autoprefixer": "onchange -d 100 css/style.css -- autoprefixer-cli -o css/style.prefixed.css css/style.css"
   },
@@ -23,6 +23,7 @@
     "autoprefixer-cli": "^1.0.0",
     "browser-sync": "^2.18.13",
     "glob-run": "^0.1.6",
+    "jshint": "^2.9.5",
     "nu-html-checker": "^0.1.0",
     "onchange": "^3.2.1",
     "parallelshell": "^3.0.2"
